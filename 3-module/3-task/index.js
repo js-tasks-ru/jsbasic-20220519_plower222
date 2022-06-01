@@ -11,12 +11,12 @@ function upperCaseFirstElement(arr) {
       tempArr.push(arr[0]);
     }
     else {
-      let tempValue = [...arr[i]];
-      tempValue[0] = tempValue[0].toUpperCase();
+      arr.shift(0);
+      let tempValue = arr.map(value => value[0].toUpperCase() + value.substr(1));
       tempArr.push(tempValue.join(""));
     }
   }
   return tempArr;
 }
 
-// console.log(camelize('my-short-string'));
+console.log(camelize('my-short-string'));
