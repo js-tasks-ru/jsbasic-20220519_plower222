@@ -44,8 +44,6 @@ export default class Carousel {
     `;
 
     carousel.innerHTML = arrow;
-
-
     carousel.append(cards);
 
     let allSlide = carousel.getElementsByClassName("carousel__inner");
@@ -92,7 +90,6 @@ export default class Carousel {
 
     let buttons = carousel.querySelectorAll('button');
 
-
     for (let i = 0; i < buttons.length; i++) {
       let button = buttons[i];
       let id = this.slides[i].id;
@@ -101,8 +98,8 @@ export default class Carousel {
           return event.detail;
         });
         button.dispatchEvent(new CustomEvent('product-add', {
-          detail: id, // Уникальный идентификатора товара из объекта товара
-          bubbles: true // это событие всплывает - это понадобится в дальнейшем
+          detail: id,
+          bubbles: true
         }));
       });
     }
