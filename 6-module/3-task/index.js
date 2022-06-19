@@ -7,12 +7,9 @@ export default class Carousel {
   }
 
   template() {
-    let templateCards = "";
-    let elem = this.slides;
 
-    elem.forEach(element => {
-      let temp = `
-      <div class="carousel__slide" data-id="penang-shrimp">
+    let templateCards = this.slides.map((element => {
+      return `<div class="carousel__slide" data-id="penang-shrimp">
         <img src="/assets/images/carousel/${element.image}" class="carousel__img" alt="slide">
         <div class="carousel__caption">
           <span class="carousel__price">€${element.price.toFixed(2)}</span>
@@ -23,9 +20,7 @@ export default class Carousel {
         </div>
       </div>
     `;
-      templateCards += `${temp}`;
-    });
-
+    }));
 
     let cards = document.createElement('div');
     cards.classList.add('carousel__inner');
@@ -94,9 +89,6 @@ export default class Carousel {
       let button = buttons[i];
       let id = this.slides[i].id;
       button.addEventListener('click', function(event) {
-        button.addEventListener('product-add', function(event) {
-          return event.detail;
-        });
         button.dispatchEvent(new CustomEvent('product-add', {
           detail: id,
           bubbles: true
