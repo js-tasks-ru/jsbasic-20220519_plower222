@@ -63,5 +63,5 @@ export default class Modal {
       }
       document.body.removeEventListener("keyup", keyUp);
     });
-  }
+
 }
