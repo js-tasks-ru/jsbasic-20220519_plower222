@@ -27,6 +27,7 @@ export default class Modal {
     let container = document.querySelector("body");
     container.classList.add("is-modal-open");
     container.append(this.modal);
+    this.ev();
   }
 
   setTitle(title) {
@@ -36,11 +37,17 @@ export default class Modal {
 
   setBody(body) {
     let modalBody = this.modal.querySelector(".modal__body");
-
     modalBody.innerHTML = body.outerHTML;
   }
 
   close() {
+    let bodyContent = document.querySelector("body");
+    bodyContent.classList.remove("is-modal-open");
+    let modal = this.modal;
+    modal.remove();
+  }
+
+  ev() {
     let bodyContent = document.querySelector("body");
     let modal = this.modal;
 
@@ -51,17 +58,12 @@ export default class Modal {
       modal.remove();
     });
 
-    modal.addEventListener("click", function (e) {
-      bodyContent.classList.remove("is-modal-open");
-      modal.remove();
-    });
-
-    document.body.addEventListener("keyup", function keyUp(e) {
+    document.addEventListener("keydown", function keyDown(e) {
       if (e.code === "Escape") {
         bodyContent.classList.remove("is-modal-open");
         modal.remove();
       }
-      document.body.removeEventListener("keyup", keyUp);
+      document.removeEventListener("keydown", keyDown);
     });
   }
 }
