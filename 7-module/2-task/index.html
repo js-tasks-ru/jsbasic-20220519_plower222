@@ -49,11 +49,9 @@
     import Modal from './index.js';
     import createElement from '../../assets/lib/create-element.js';
 
-    let superModal = '';
 
     window.openModal = () => {
       let modal = new Modal();
-      superModal = modal;
       modal.setTitle('Modal Title');
       modal.setBody(createElement('<div>Тело модального окна</div>'));
 
