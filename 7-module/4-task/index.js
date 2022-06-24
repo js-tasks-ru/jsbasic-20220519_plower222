@@ -73,8 +73,6 @@ export default class StepSlider {
     thumb.onpointerdown = function(event) {
       event.preventDefault();
 
-      // let shiftX = event.clientX - thumb.getBoundingClientRect().left;
-
       document.addEventListener('pointermove', onPointerMove);
       document.addEventListener('pointerup', onPointerUp);
     };
