@@ -69,12 +69,9 @@ export default class StepSlider {
     });
 
 
-    let shiftX;
 
     thumb.onpointerdown = function(event) {
       event.preventDefault();
-
-      shiftX = event.clientX - thumb.getBoundingClientRect().left;
 
       document.addEventListener('pointermove', onPointerMove);
       document.addEventListener('pointerup', onPointerUp);
@@ -82,7 +79,7 @@ export default class StepSlider {
 
     function onPointerMove(event) {
       slider.classList.add('slider_dragging');
-      let newLeft = event.clientX - shiftX - slider.getBoundingClientRect().left;
+      let newLeft = event.clientX - slider.getBoundingClientRect().left;
       let leftRelative = newLeft / slider.offsetWidth;
       console.log(leftRelative)
       if (leftRelative < 0) {
@@ -113,10 +110,11 @@ export default class StepSlider {
       document.removeEventListener('pointermove', onPointerMove);
       slider.classList.remove('slider_dragging');
 
-      // slider.dispatchEvent(new CustomEvent('slider-change', { // имя события должно быть именно 'slider-change'
-      //   detail: val, // значение 0, 1, 2, 3, 4
-      //   bubbles: true // событие всплывает - это понадобится в дальнейшем
-      // }));
+
+      slider.dispatchEvent(new CustomEvent('slider-change', { // имя события должно быть именно 'slider-change'
+        detail: val, // значение 0, 1, 2, 3, 4
+        bubbles: true // событие всплывает - это понадобится в дальнейшем
+      }));
     }
 
     thumb.ondragstart = () => false;
