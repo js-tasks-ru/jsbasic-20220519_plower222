@@ -69,13 +69,13 @@ export default class Cart {
   }
 }
 
-let test = new Cart();
-let testProduct = {
-  name: "Laab kai chicken salad", // название товара
-  price: 10, // цена товара
-  category: "salads",
-  image: "laab_kai_chicken_salad.png",
-  id: "laab-kai-chicken-salad",
-};
+// let test = new Cart();
+// let testProduct = {
+//   name: "Laab kai chicken salad", // название товара
+//   price: 10, // цена товара
+//   category: "salads",
+//   image: "laab_kai_chicken_salad.png",
+//   id: "laab-kai-chicken-salad",
+// };
 
-console.log(test.addProduct());
+// console.log(test.addProduct());

@@ -10,19 +10,22 @@ export default class ProductGrid {
 
   create() {
     let newCards = this.cards();
-    let productGrid = this.tempalate().querySelector(".products-grid__inner");
+    let productGridInner = this.tempalate();
 
     newCards.map((element) => {
-      productGrid.append(element.elem);
+      productGridInner.append(element.elem);
     });
+
+    let productGrid = createElement(`<div class="products-grid"></div>`);
+
+    productGrid.append(productGridInner);
 
     return productGrid;
   }
 
   tempalate() {
-    let element = createElement(`<div class="products-grid">
+    let element = createElement(`
     <div class="products-grid__inner">
-    </div>
     </div>`);
     return element;
   }
@@ -35,28 +38,10 @@ export default class ProductGrid {
   }
 
   updateFilter(filters) {
-    let filteredMenu = this.tempalate().querySelector(".products-grid__inner");
+    let filteredMenu = this.tempalate();
     let arrayTemp = this.cards();
 
     this.filters = Object.assign(this.filters, filters);
-
-    // if (filters.hasOwnProperty("noNuts")) {
-    //   this.filters.noNuts = filters.noNuts;
-    // }
-
-    // if (filters.hasOwnProperty("vegeterianOnly")) {
-    //   this.filters.vegeterianOnly = filters.vegeterianOnly;
-    // }
-
-    // if (filters.hasOwnProperty("maxSpiciness")) {
-    //   this.filters.maxSpiciness = filters.maxSpiciness;
-    // }
-
-    // if (filters.hasOwnProperty("category")) {
-    //   this.filters.category = filters.category;
-    // } else {
-    //   this.filters.category = "";
-    // }
 
     if (this.filters.category) {
       console.log("зашел в фильтр Категории");
@@ -69,7 +54,7 @@ export default class ProductGrid {
       console.log("зашел в фильтр Без орехов");
       arrayTemp = arrayTemp.filter(
         (item) =>
-          !item.product.hasOwnProperty("nuts") || item.product.noNuts === false
+          !item.product.hasOwnProperty("nuts") || item.product.nuts === false
       );
     }
 
@@ -91,11 +76,9 @@ export default class ProductGrid {
       filteredMenu.append(element.elem);
     });
 
-    // let productsGridInner = document.querySelector(".products-grid__inner");
+    let tempFilteredMenu = this.tempalate();
+    tempFilteredMenu.append(filteredMenu);
 
-    this.elem.innerHTML = filteredMenu.innerHTML;
-
-    console.log(this.filters);
-    console.log(arrayTemp);
+    this.elem.innerHTML = tempFilteredMenu.innerHTML;
   }
 }
